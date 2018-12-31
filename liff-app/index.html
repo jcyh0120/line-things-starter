@@ -13,13 +13,13 @@
       };
     </script>
     <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
-    <script src="liff-005.js"></script>
+    <script src="liff-006.js"></script>
     <link rel="stylesheet" type="text/css" href="liff.css" />
   </head>
 
   <body>
     <!-- Title -->
-    <h2>LINE Things Starter v0.0.20</h2>
+    <h2>LINE Things Starter v0.0.21</h2>
     <hr />
     <p>
       <img id="loading-animation" class="" src="loading.gif" height="14px" />
@@ -78,6 +78,16 @@
           onclick="reConnect()"
         >
           reConnect
+        </button>
+      </p>
+
+      <p>
+        <button
+          id="btn-connDevice"
+          class="btn btn-led-toggle"
+          onclick="connectDevice()"
+        >
+          connectToDevice
         </button>
       </p>
 
