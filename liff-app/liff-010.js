@@ -216,16 +216,17 @@ async function liffGetServices(device) {
 async function liffGetUserService(service) {
   try {
     // Button pressed state
-    const characteristic = await service.getCharacteristic(
+    const btnCharacteristic = await service.getCharacteristic(
       BTN_CHARACTERISTIC_UUID
     );
-    liffGetButtonStateCharacteristic(characteristic);
+    liffGetButtonStateCharacteristic(btnCharacteristic);
 
     // Toggle LED
     const LEDCharacteristic = await service.getCharacteristic(
       LED_CHARACTERISTIC_UUID
     );
 
+    window.btnCharacteristic = btnCharacteristic;
     window.ledCharacteristic = LEDCharacteristic;
     // Switch off by default
     liffToggleDeviceLedState(false);
@@ -289,7 +290,7 @@ async function liffToggleDeviceLedState(state) {
 }
 
 function reConnect() {
-  window.characteristic.removeEventListener("characteristicvaluechanged");
+  window.btnCharacteristic.removeEventListener("characteristicvaluechanged");
   window.gatt.disconnect();
 }
 
