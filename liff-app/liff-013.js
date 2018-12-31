@@ -238,12 +238,14 @@ async function liffGetUserService(service) {
 async function liffGetPSDIService(service) {
   try {
     // Get PSDI value
+    console.log("get PSDI Service:", service);
     const characteristic = await service.getCharacteristic(
       PSDI_CHARACTERISTIC_UUID
     );
-
+    console.log("get PSDI Char:", characteristic);
     const value = await characteristic.readValue();
 
+    console.log("get PSDI Char value:", value);
     // Byte array to hex string
     const psdi = new Uint8Array(value.buffer).reduce(
       (output, byte) => output + ("0" + byte.toString(16)).slice(-2),
@@ -305,7 +307,9 @@ function getServices() {
 
 async function getPSDIService() {
   try {
+    console.log("gatt", window.gatt);
     const PSDIService = await window.gatt.getPrimaryService(PSDI_SERVICE_UUID);
+    console.log("get PSDI outside", PSDIService);
     liffGetPSDIService(PSDIService);
   } catch (error) {
     console.error(error);
