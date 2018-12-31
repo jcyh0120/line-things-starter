@@ -170,11 +170,12 @@ async function liffRequestDevice() {
     uiStatusError(makeErrorMsg(error), false);
   }
 }
-
 async function liffConnectToDevice(device) {
-  try {
-    await device.gatt.connect();
+  await device.gatt.connect();
+}
 
+async function liffGetServices(device) {
+  try {
     document.getElementById("device-name").innerText = device.name;
     document.getElementById("device-id").innerText = device.id;
 
@@ -293,4 +294,8 @@ function reConnect() {
 
 function connectDevice() {
   liffConnectToDevice(device);
+}
+
+function getServices() {
+  liffGetServices(window.device);
 }
