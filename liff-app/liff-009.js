@@ -289,11 +289,12 @@ async function liffToggleDeviceLedState(state) {
 }
 
 function reConnect() {
+  window.characteristic.removeEventListener("characteristicvaluechanged");
   window.gatt.disconnect();
 }
 
 function connectDevice() {
-  liffConnectToDevice(device);
+  liffConnectToDevice(window.device);
 }
 
 function getServices() {
