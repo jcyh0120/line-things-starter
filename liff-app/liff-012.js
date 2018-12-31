@@ -249,7 +249,7 @@ async function liffGetPSDIService(service) {
       (output, byte) => output + ("0" + byte.toString(16)).slice(-2),
       ""
     );
-    console.log("psid:", psid);
+    console.log("psdi:", psdi);
     document.getElementById("device-psdi").innerText = psdi;
   } catch (error) {
     uiStatusError(makeErrorMsg(error), false);
@@ -303,7 +303,7 @@ function getServices() {
   liffGetServices(window.device);
 }
 
-async function getPSIDService() {
+async function getPSDIService() {
   try {
     const PSDIService = await window.gatt.getPrimaryService(PSDI_SERVICE_UUID);
     liffGetPSDIService(PSDIService);
