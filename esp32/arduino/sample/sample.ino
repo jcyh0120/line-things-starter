@@ -64,7 +64,7 @@ void setup() {
 
   // Security Settings
   BLESecurity *thingsSecurity = new BLESecurity();
-  thingsSecurity->setAuthenticationMode(ESP_LE_AUTH_BOND);
+  thingsSecurity->setAuthenticationMode(ESP_LE_AUTH_REQ_SC_ONLY);
   thingsSecurity->setCapability(ESP_IO_CAP_NONE);
   thingsSecurity->setInitEncryptionKey(ESP_BLE_ENC_KEY_MASK | ESP_BLE_ID_KEY_MASK);
 
@@ -89,10 +89,12 @@ void loop() {
     delay(500); // Wait for BLE Stack to be ready
     thingsServer->startAdvertising(); // Restart advertising
     oldDeviceConnected = deviceConnected;
+    Serial.println("Disconnection");
   }
   // Connection
   if (deviceConnected && !oldDeviceConnected) {
     oldDeviceConnected = deviceConnected;
+    Serial.println("Connection");
   }
 }
 
